@@ -1,5 +1,5 @@
 # Get the dataset.
-You can unzip the data.7z. In addition, the datasets and corpus can also be found on [zenodo.org]{https://zenodo.org/record/3559480#.XeTMzdVG2Hs}.
+You can unzip the data.7z. In addition, the datasets and corpus can also be found on [zenodo.org](https://zenodo.org/record/3559480#.XeTMzdVG2Hs).
 # Training the Word2Vec model
 then we can use w2c.py or fasttext.py to save the code after training a word2vec or fasttext model on it. 
 The mode can be set to "withString" or "withoutString" through a parameter, and the tokenized data that corresponds to that setting is used as a basis for training. 
