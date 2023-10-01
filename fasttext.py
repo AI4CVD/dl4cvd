@@ -5,7 +5,7 @@ import pickle
 import sys
 import fasttext
 
-path = "/home/extra_space/xsl/EmbeddingVer/"
+path = "/home/extra_space/EmbeddingVer/"
 all_words = []
     
 mode = "withString" #default
