@@ -20,9 +20,6 @@ from sklearn.utils import class_weight
 import tensorflow as tf
 from gensim.models import Word2Vec, KeyedVectors
 from gensim.models import FastText, KeyedVectors
-from transformers import RobertaTokenizer, RobertaConfig, RobertaModel, TFAutoModel
-import torch
-from bert_embedding import BertEmbedding
 
 path = "/home/extra_space/xsl/EmbeddingVer/"
 mincount = 10
@@ -30,21 +27,20 @@ iterationen = 100
 s = 200
 w = "withString"
 
-#w2v = "word2vec_" + w + str(mincount) + "-" + str(iterationen) + "-" + str(s)
-#w2vmodel = path + "Word2v-embbeding/" + w2v + ".model"
+w2v = "word2vec_" + w + str(mincount) + "-" + str(iterationen) + "-" + str(s)
+w2vmodel = path + "Word2v-embbeding/" + w2v + ".model"
 
 #f2v = "fasttext_"+ w + str(mincount) + "-" + str(iterationen) +"-" + str(s)
 #f2vmodel = path + "FastText-embbeding/" + f2v + ".model"
 
-bert_embedding = BertEmbedding()
 
-#if not (os.path.isfile(w2vmodel)):
-#    print("w2v model is still being created...")
-#    print("w2vmodel")
-#    sys.exit()
+if not (os.path.isfile(w2vmodel)):
+    print("w2v model is still being created...")
+    print("w2vmodel")
+    sys.exit()
 
-#model = Word2Vec.load(w2vmodel)
-#word_vectors = model.wv
+model = Word2Vec.load(w2vmodel)
+word_vectors = model.wv
 
 #model = FastText.load(f2vmodel)
 #word_vectors = model.wv
@@ -118,82 +114,44 @@ ValidateY = []
 FinaltestX = []
 FinaltestY = []
 
-#print("Creating training dataset... ")
-#for k in keystrain:
-#    block = allblocks[k]
-#    code = block[0]
-#    token = utils.getTokens(code)
-#    vectorlist = []
-#    for t in token:
-#        if t in word_vectors.vocab and t != " ":
-#            vector = model[t]
-#            vectorlist.append(vector.tolist())
-#    TrainX.append(vectorlist)
-#    TrainY.append(block[1])
-
-#print("Creating validation dataset...")
-#for k in keystest:
-#    block = allblocks[k]
-#    code = block[0]
-#    token = utils.getTokens(code)
-#    vectorlist = []
-#    for t in token:
-#        if t in word_vectors.vocab and t != " ":
-#            vector = model[t]
-#            vectorlist.append(vector.tolist())
-#    ValidateX.append(vectorlist)
-#    ValidateY.append(block[1])
-
-#print("Creating finaltest dataset...")
-#for k in keysfinaltest:
-#    block = allblocks[k]
-#    code = block[0]
-#    token = utils.getTokens(code)
-#    vectorlist = []
-#    for t in token:
-#        if t in word_vectors.vocab and t != " ":
-#            vector = model[t]
-#            vectorlist.append(vector.tolist())
-#    FinaltestX.append(vectorlist)
-#    FinaltestY.append(block[1])
-
-# for bert
 print("Creating training dataset... ")
 for k in keystrain:
-    block = allblocks[k]    
+    block = allblocks[k]
     code = block[0]
-    sentences = code.split('\n')
-    result = bert_embedding(sentences)
-    for i in range(len(result)):
-        token = result[i]
-        tokens = token[1]
-    TrainX.append(tokens) 
-    TrainY.append(block[1]) 
+    token = utils.getTokens(code)
+    vectorlist = []
+    for t in token:
+        if t in word_vectors.vocab and t != " ":
+            vector = model[t]
+            vectorlist.append(vector.tolist())
+    TrainX.append(vectorlist)
+    TrainY.append(block[1])
 
 print("Creating validation dataset...")
 for k in keystest:
     block = allblocks[k]
     code = block[0]
-    sentences = code.split('\n')
-    result = bert_embedding(sentences)
-    for i in range(len(result)):
-        token = result[i]
-        tokens = token[1]
-    ValidateX.append(tokens) 
-    ValidateY.append(block[1]) 
+    token = utils.getTokens(code)
+    vectorlist = []
+    for t in token:
+        if t in word_vectors.vocab and t != " ":
+            vector = model[t]
+            vectorlist.append(vector.tolist())
+    ValidateX.append(vectorlist)
+    ValidateY.append(block[1])
 
 print("Creating finaltest dataset...")
 for k in keysfinaltest:
-    block = allblocks[k]  
+    block = allblocks[k]
     code = block[0]
-    sentences = code.split('\n')
-    result = bert_embedding(sentences)
-    for i in range(len(result)):
-        token = result[i]
-        tokens = token[1]
-    FinaltestX.append(tokens)  
+    token = utils.getTokens(code)
+    vectorlist = []
+    for t in token:
+        if t in word_vectors.vocab and t != " ":
+            vector = model[t]
+            vectorlist.append(vector.tolist())
+    FinaltestX.append(vectorlist)
     FinaltestY.append(block[1])
-
 
 print("Train length: " + str(len(TrainX)))
 print("Test length: " + str(len(ValidateX)))
