@@ -20,9 +20,6 @@ from sklearn.utils import class_weight
 import tensorflow as tf
 from gensim.models import Word2Vec, KeyedVectors
 from gensim.models import FastText, KeyedVectors
-#from transformers import RobertaTokenizer, RobertaConfig, RobertaModel, TFAutoModel
-#import torch
-#from bert_embedding import BertEmbedding
 
 path = "/home/extra_space/xsl/EmbeddingVer/"
 mincount = 10
@@ -35,8 +32,6 @@ w2vmodel = path + "Word2v-embbeding/" + w2v + ".model"
 
 #f2v = "fasttext_"+ w + str(mincount) + "-" + str(iterationen) +"-" + str(s)
 #f2vmodel = path + "FastText-embbeding/" + f2v + ".model"
-
-#bert_embedding = BertEmbedding()
 
 if not (os.path.isfile(w2vmodel)):
     print("word2vec model is still being created...")
@@ -156,44 +151,6 @@ for k in keysfinaltest:
             vectorlist.append(vector.tolist())
     FinaltestX.append(vectorlist)
     FinaltestY.append(block[1])
-
-# for bert
-#print("Creating training dataset... ")
-#for k in keystrain:
-#    block = allblocks[k]    
-#    code = block[0]
-#    sentences = code.split('\n')
-#    result = bert_embedding(sentences)
-#    for i in range(len(result)):
-#        token = result[i]
-#        tokens = token[1]
-#    TrainX.append(tokens) 
-#    TrainY.append(block[1]) 
-
-#print("Creating validation dataset...")
-#for k in keystest:
-#    block = allblocks[k]
-#    code = block[0]
-#    sentences = code.split('\n')
-#    result = bert_embedding(sentences)
-#    for i in range(len(result)):
-#        token = result[i]
-#        tokens = token[1]
-#    ValidateX.append(tokens) 
-#    ValidateY.append(block[1]) 
-
-#print("Creating finaltest dataset...")
-#for k in keysfinaltest:
-#    block = allblocks[k]  
-#    code = block[0]
-#    sentences = code.split('\n')
-#    result = bert_embedding(sentences)
-#    for i in range(len(result)):
-#        token = result[i]
-#        tokens = token[1]
-#    FinaltestX.append(tokens)  
-#    FinaltestY.append(block[1])
-
 
 print("Train length: " + str(len(TrainX)))
 print("Test length: " + str(len(ValidateX)))
