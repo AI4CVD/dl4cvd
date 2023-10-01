@@ -9,7 +9,7 @@ python w2v.py withString
 ```
 # Training the LSTM model
 Next, the data has to be split at random in three segments: training, validating and final testing. This script takes one argument, the data subset it should work on which was created in the previous step. 
-The data is shuffled randomly and then split in parts of 80%, 10% and 10% (training, validation and final test set), and the tokens are encoded using the loaded word2vec model. 
+The data is shuffled randomly and then split in parts of 70%, 15% and 15% (training, validation and final test set), and the tokens are encoded using the loaded word2vec model. 
 Then, the LSTM model is trained and saved as model/model_w2v/LSTM_model.h5 and so forth.
 ```
 python LSTM-Model-with-embedding.py
