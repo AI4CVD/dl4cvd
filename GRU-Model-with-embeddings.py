@@ -21,7 +21,7 @@ import tensorflow as tf
 from gensim.models import Word2Vec, KeyedVectors
 from gensim.models import FastText, KeyedVectors
 
-path = "/home/extra_space/xsl/EmbeddingVer/"
+path = "/home/extra_space/EmbeddingVer/"
 mincount = 10
 iterationen = 100
 s = 200
