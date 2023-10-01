@@ -5,7 +5,7 @@ import pickle
 import sys
 
 all_words = []
-path = "/home/extra_space/xsl/EmbeddingVer/"
+path = "/home/extra_space/EmbeddingVer/"
 
 mode = "withString"  # default
 if len(sys.argv) > 1:
