@@ -3,7 +3,7 @@ You can unzip the data.7z. In addition, the datasets and corpus can also be foun
 # Training the Word2Vec model
 The word2vec model is trained on a large set of python code which is simply concatenated. If you just want to use the word2vec model, extract the prepared corpus (pythontraining_edit.txt) and train it yourself using w2v.py. Otherwise, all steps from the beginning are outlined below.
 
-Since there are syntax and indentation errors in those files, the following script fixes those. Note that with changes over time, different syntax errors might be introduced if the code is re-downloaded, which means that the script would need to be changed to fix those. The results are saved in pythontraining_edit.txt.
+Since there are syntax and indentation errors in original dataset, the following script fixes those. Note that with changes over time, different syntax errors might be introduced if the code is re-downloaded, which means that the script would need to be changed to fix those. The results are saved in pythontraining_edit.txt.
 ```
 python w2v_cleancorpus.py
 ```
